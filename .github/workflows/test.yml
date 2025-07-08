@@ -26,6 +26,7 @@ jobs:
     # This is the key change. The name of the job is now dynamic according the workflow.
     name: Run - ${{ github.event.inputs.test_type }}
     
+    # This workflow is configured to run on your custom 'blacksmith' runner.
     runs-on: blacksmith-2vcpu-ubuntu-2404-arm
 
     env:
@@ -35,17 +36,22 @@ jobs:
     
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        # Updated to v4, the latest major version.
+        uses: actions/checkout@v4
 
       - name: Set up Java for Maven tests
-        uses: useblacksmith/setup-java@v5
+        # FIX: Replaced 'useblacksmith/setup-java' with the official 'actions/setup-java'.
+        # The official action is multi-architecture and will work correctly on ARM runners like 'blacksmith'.
+        uses: actions/setup-java@v4
         with:
           java-version: '11'
           distribution: 'temurin'  
           cache: 'maven'           
 
       - name: Set up Node.js for SmartUI CLI
-        uses: useblacksmith/setup-node@v5
+        # FIX: Replaced 'useblacksmith/setup-node' with the official 'actions/setup-node'.
+        # This ensures compatibility and reliability on different runner architectures.
+        uses: actions/setup-node@v4
         with:
           node-version: '20'
 
