@@ -52,7 +52,7 @@ public class AndroidApp {
             capabilities.setCapability("deviceName", device);
             capabilities.setCapability("platformVersion",version);
             capabilities.setCapability("platformName", platform);
-            capabilities.setCapability("isRealMobile", true);
+            capabilities.setCapability("isRealMobile", false);
             //AppURL (Create from Wikipedia.apk sample in project)
             capabilities.setCapability("app", "proverbial-android"); //Enter your app url
             capabilities.setCapability("deviceOrientation", "PORTRAIT");
